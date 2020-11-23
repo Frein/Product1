@@ -1,16 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
 import './App.css';
+import store from "./app/store";
+import {Provider} from "react-redux";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <Counter />
-      </header>
-    </div>
-  );
+export const MasterFrontContext = React.createContext({
+    count: 0,
+});
+
+function Product1App({masterCount, routing}) {
+    return (
+        <MasterFrontContext.Provider value={masterCount}>
+            <Provider store={store}>
+                {routing}
+            </Provider>
+        </MasterFrontContext.Provider>
+
+    );
 }
 
-export default App;
+export default Product1App;
